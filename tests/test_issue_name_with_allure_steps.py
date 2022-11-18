@@ -5,6 +5,9 @@ from selene.support.conditions import be
 from selene.support.shared import browser
 from selene.support.shared.jquery_style import s
 
+from utils import u9
+
+
 @allure.tag("web")
 @allure.severity(Severity.BLOCKER)
 @allure.label("owner", "Vansansman")
@@ -28,3 +31,7 @@ def test_dynamic_steps():
 
     with allure.step("Проверяем название Issue 'Listeners NamedBy' в репозитории"):
         s(by.text("Listeners NamedBy")).should(be.visible)
+
+    allure.Attach.add_screenshot()
+    allure.Attach.add_logs()
+    allure.Attach.add_html()

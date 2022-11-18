@@ -4,6 +4,8 @@ from selene.support import by
 from selene.support.conditions import be
 from selene.support.shared import browser
 from selene.support.shared.jquery_style import s
+from utils import u9
+
 
 @allure.tag("web")
 @allure.severity(Severity.CRITICAL)
@@ -23,3 +25,7 @@ def test_github_selene():
     s("#issues-tab").click()
 
     s(by.text("Listeners NamedBy")).should(be.visible)
+
+    # attach.add_screenshot()
+    attach.add_logs()
+    attach.add_html()

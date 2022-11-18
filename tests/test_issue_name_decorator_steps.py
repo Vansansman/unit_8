@@ -1,9 +1,10 @@
 import allure
-from allure_commons.types import Severity
+from allure_commons._allure import attach
+from allure_commons.types import Severity, AttachmentType
 from selene.support import by
 from selene.support.shared import browser
 from selene.support.shared.jquery_style import s
-
+from utils.u9 import add_html, add_screenshot, add_logs
 
 @allure.tag("web")
 @allure.severity(Severity.MINOR)
@@ -44,3 +45,18 @@ def open_issue_tab():
 @allure.step("Проверяем название Issue {name} в репозитории")
 def check_issue_name(name):
     s(by.text(name)).click()
+
+def add_screenshot(browser):
+    png = browser.driver.get_screenshots_as_png()
+    allure.attach(body=png, name='screenshot', attachment_type=AttachmentType.PNG, extension='.png')
+
+
+def add_logs(browser):
+    log = "".join(f'{text}\n' for text in browser.driver.get_logs(log_type='browser'))
+    allure.attach(log, 'browser_logs', AttachmentType.TEXT, '.log')
+
+
+def add_html(browser):
+    html = browser.driver.page_sourse
+    allure.attach(html, 'page_sourse', AttachmentType.HTML, '.html')
+
