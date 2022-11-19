@@ -26,6 +26,6 @@ def test_github_selene():
 
     s(by.text("Listeners NamedBy")).should(be.visible)
 
-    # attach.add_screenshot()
-    attach.add_logs()
-    attach.add_html()
+    u9.add_screenshot(browser)
+    u9.add_logs(browser)
+    u9.add_html(browser)
